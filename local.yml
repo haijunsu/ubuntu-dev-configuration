@@ -1,0 +1,11 @@
+---
+- hosts: localhost
+  connection: local
+
+  roles:
+    - role: dev
+      tags: ['dev']
+
+    - role: common
+      tags: ['common']
+

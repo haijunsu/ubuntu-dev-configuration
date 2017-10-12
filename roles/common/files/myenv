@@ -1,0 +1,7 @@
+#!/bin/bash
+set editing-mode vi
+. ~/.bash/myalias
+if [ -f ~/.mylocal ]; then
+    # This script only support gnu sed
+    . ~/.mylocal
+fi

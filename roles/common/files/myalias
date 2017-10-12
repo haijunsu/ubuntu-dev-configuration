@@ -1,0 +1,20 @@
+#!/bin/bash
+
+# ls option '-G' means "Enable colorized output" on Mac while it means "inhibit display
+# of group inforation" on Linux
+OS_NAME=`uname -s`
+if [ "$OS_NAME" = "Darwin" ]; then
+    # Mac OS_NAME
+    alias ls='ls -G' # enable colorized output
+    alias ll='ls -altrG'
+else
+    alias ll='ls -altrF' # For Linux
+fi
+alias grep='grep --color=auto'
+alias h='history'
+
+## git commands
+alias gitci='git commit -m'
+alias gitpush='git push -u origin'
+alias gitco='git checkout'
+
