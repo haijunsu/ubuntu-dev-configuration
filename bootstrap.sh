@@ -13,4 +13,3 @@ sudo mv ${USER} /etc/sudoers.d/
 # install ansible and git
 sudo apt update
 sudo apt install ansible git -y
-sudo gem install neovim bundler
