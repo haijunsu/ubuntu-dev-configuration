@@ -9,7 +9,7 @@ echo "$USER ALL=(ALL) NOPASSWD: ALL" > $USER
 sudo cp $USER /etc/sudoers.d/
 ```
 
-If nvim cannot find gem neovim plug, please run ```sudo gem install neovim``` manually.
+If nvim cannot find gem neovim plugin, please run ```sudo gem install neovim``` manually.
 
 ## Reference:
 * git@github.com:haijunsu/ubuntu-dev-configuration.git
