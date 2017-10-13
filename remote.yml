@@ -3,26 +3,8 @@
   connection: ssh
 
   roles:
-    - role: homebrew
-      tags: ['homebrew']
-
-    - role: python
-      tags: ['python']
+    - role: dev
+      tags: ['dev']
 
     - role: common
       tags: ['common']
-
-    - role: vim
-      tags: ['vim']
-
-    - role: docker
-      tags: ['docker']
-
-    - role: browser
-      tags: ['browser']
-
-    - role: cloud-drive
-      tags: ['cloud-drive']
-
-    - role: update
-      tags: ['update']
