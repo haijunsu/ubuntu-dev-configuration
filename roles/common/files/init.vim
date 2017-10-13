@@ -504,7 +504,8 @@
   let g:WebDevIconsUnicodeDecorateFolderNodes = 1
   let g:NERDTreeWinSize=45
   let g:NERDTreeAutoDeleteBuffer=1
-  let g:WebDevIconsOS = 'Darwin'
+"  let g:WebDevIconsOS = 'Darwin'
+  let g:WebDevIconsOS = 'Linux'
   let NERDTreeMinimalUI=1
   let NERDTreeCascadeSingleChildDir=1
   let g:NERDTreeHeader = 'hello'

@@ -4,13 +4,23 @@ function _update_ps1() {
     PS1="$(powerline-shell $?)"
 }
 
+. ~/.bash/myenv
+
 if [ "$TERM" != "linux" ]; then
     PROMPT_COMMAND="_update_ps1; $PROMPT_COMMAND"
 fi
 
-if [ -f ~/.bashrc ]; then
-    # This script only support gnu sed
-    . ~/.bashrc
+
+if [ "x${PROFILE_LOADED}" == "x" ]; then
+    if [ -f ~/.bashrc ]; then
+        echo sourcing .bashrc
+        # This script only support gnu sed
+        . ~/.bashrc
+        export PROFILE_LOADED="Done"
+    fi
 fi
-. ~/.bash/myenv
+
+# add user path
+PATH=~/bin:~/.local/bin:${PATH}
+export PATH
 
