@@ -117,9 +117,9 @@
 "  source ~/.local.vim
 " Neovim Settings
   set termguicolors
-  set guicursor=n-v-c:block,i-ci-ve:ver25,r-cr:hor20,o:hor50
-                    \,a:blinkwait100-blinkoff0-blinkon10-Cursor/lCursor
-                    \,sm:block-blinkwait175-blinkoff150-blinkon175
+  set guicursor=n-v-c:block,i-ci-ve:ver25,r-cr:hor20,o:hor50,a:blinkon0
+"                   \,a:blinkwait700-blinkoff400-blinkon250-Cursor/lCursor
+"                   \,sm:block-blinkwait175-blinkoff150-blinkon175
   set cursorline " highlight current line
   set clipboard+=unnamedplus
   set pastetoggle=<f6>
