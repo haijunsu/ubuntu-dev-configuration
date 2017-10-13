@@ -6,9 +6,7 @@ function _update_ps1() {
 
 . ~/.bash/myenv
 
-if [ "$TERM" != "linux" ]; then
-    PROMPT_COMMAND="_update_ps1; $PROMPT_COMMAND"
-fi
+PROMPT_COMMAND="_update_ps1; $PROMPT_COMMAND"
 
 
 if [ "x${PROFILE_LOADED}" == "x" ]; then

@@ -21,9 +21,10 @@
     name: "{{ item.name | default(item) }}"
     state: "{{ item.state | default('present') }}"
     version: "{{ item.version | default(omit) }}"
-    user_install: yes
+    #  user_install: yes
     executable: "{{ item.executable | default(omit) }}"
   with_items: "{{ gem_packages }}"
+  become: yes
 
 - name: Install global Pip packages.
   pip:
@@ -31,11 +32,15 @@
     state: "{{ item.state | default('present') }}"
     version: "{{ item.version | default(omit) }}"
     executable: "{{ item.executable | default(omit) }}"
+    #extra_args: "--user"
   with_items: "{{ pip_packages }}"
+  become: yes
 
 - name: Apply go get constabulary/gb.
   command: go get -u {{ item }}
   with_items: "{{ go_repos }}"
+  environment:
+    GOPATH: '/home/{{ ansible_user_id }}/go'
 
 - name: Ensure directory exists.
   file:

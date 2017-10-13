@@ -7,6 +7,8 @@ gem_packages:
   - name: neovim
     executable: gem
     state: present
+  - name: bundler
+    state: present
   # - name: bundler
   #   state: present # present/absent/latest, default: present
   #   version: "~> 1.15.1" # default: N/A
