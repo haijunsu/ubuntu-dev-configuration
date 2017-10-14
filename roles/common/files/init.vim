@@ -67,7 +67,7 @@
   call dein#add('Shougo/neomru.vim')
   call dein#add('Shougo/context_filetype.vim')
   call dein#add('chemzqm/denite-git')
-  call dein#add('ternjs/tern_for_vim', {'build': 'npm install'})
+"  call dein#add('ternjs/tern_for_vim', {'build': 'npm install'})
   call dein#add('carlitux/deoplete-ternjs')
   call dein#add('artur-shaik/vim-javacomplete2')
   call dein#add('Shougo/neco-vim')
@@ -76,7 +76,7 @@
   call dein#add('davidhalter/jedi-vim', {'on_ft': 'python'})
   call dein#add('zchee/deoplete-jedi')
 "  call dein#add('zchee/nvim-go', {'build': 'gb build', 'on_ft': 'go'})
-  call dein#add('zchee/nvim-go', {'build': 'make'})
+"  call dein#add('zchee/nvim-go', {'build': 'make'})
   call dein#add('zchee/deoplete-go')
   call dein#add('junegunn/limelight.vim')
   call dein#add('Konfekt/FastFold')
@@ -100,7 +100,7 @@
   call dein#local('~/GitHub', {},['nvim-typescript'])
   call dein#add('chemzqm/denite-git')
   call dein#add('sjl/vitality.vim')
-  call dein#add('ryanoasis/vim-devicons')
+"  call dein#add('ryanoasis/vim-devicons')
   call dein#add('tiagofumo/vim-nerdtree-syntax-highlight')
   call dein#add('vim-airline/vim-airline-themes')
   if dein#check_install()
@@ -446,8 +446,8 @@
   let g:vimfiler_ignore_pattern = ""
   " map <silent> - :VimFiler<CR>
 	let g:vimfiler_tree_leaf_icon = ''
-	let g:vimfiler_tree_opened_icon = ''
-	let g:vimfiler_tree_closed_icon = ''
+	let g:vimfiler_tree_opened_icon = '+'
+	let g:vimfiler_tree_closed_icon = '-'
 	let g:vimfiler_file_icon = ''
 	let g:vimfiler_marked_file_icon = '*'
   let g:vimfiler_expand_jump_to_first_child = 0
@@ -517,8 +517,8 @@
   let g:NERDTreeShowIgnoredStatus = 0
   " let g:WebDevIconsUnicodeDecorateFileNodesDefaultSymbol = 1
   " let g:NERDTreeDirArrows = 1
-  let g:NERDTreeDirArrowExpandable = ''
-  let g:NERDTreeDirArrowCollapsible = ''
+  let g:NERDTreeDirArrowExpandable = '+'
+  let g:NERDTreeDirArrowCollapsible = '-'
   let g:WebDevIconsUnicodeDecorateFolderNodesDefaultSymbol = ''
 "}}}
 
