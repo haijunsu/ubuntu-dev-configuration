@@ -13,7 +13,8 @@ gem_packages:
   # - name: bundler
   #   state: present # present/absent/latest, default: present
   #   version: "~> 1.15.1" # default: N/A
-npm_packages: []
+npm_packages:
+  - name: alex
   # - name: webpack
   #   state: present # present/absent/latest, default: present
   #   version: "^2.6" # default: N/A
@@ -22,6 +23,10 @@ pip_packages:
     state: present
     executable: pip3
   - name: neovim
+    executable: pip2
+  - name: proselint
+    executable: pip3
+  - name: proselint
     executable: pip2
 # powerline shell
   - name: nose

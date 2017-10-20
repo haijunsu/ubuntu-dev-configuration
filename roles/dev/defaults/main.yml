@@ -35,6 +35,7 @@ apt_packages:
   - golang-go
   - default-jdk
   - docker-ce
+  - npm
 
 
 
