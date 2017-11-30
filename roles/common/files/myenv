@@ -1,4 +1,5 @@
 #!/bin/bash
+set -o vi
 set editing-mode vi
 . ~/.bash/myalias
 if [ -f ~/.mylocal ]; then
