@@ -1,6 +1,6 @@
 ## Ubuntu development configuration
 * Run *bootstrap.sh* to install Ansible.
-* Run *ansible-playbook local.yml -i development  -K*
+* Run *ansible-playbook local.yml -i development*
 
 **Note**
 To avoid prompt password, please do the following to disable sudo password.
