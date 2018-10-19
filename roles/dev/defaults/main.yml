@@ -6,8 +6,9 @@ apt_key_ids: []
 
 apt_repositories:
   - ppa:neovim-ppa/stable
-  - ppa:longsleep/golang-backports
-  - deb [arch=amd64] https://download.docker.com/linux/ubuntu xenial stable
+#  - ppa:longsleep/golang-backports
+#  - deb [arch=amd64] https://download.docker.com/linux/ubuntu xenial stable
+  - deb [arch=amd64] https://download.docker.com/linux/ubuntu bionic stable 
 
 apt_packages_remove:
   - docker
