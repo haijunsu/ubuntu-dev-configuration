@@ -1,41 +1,69 @@
-"|  \/  (_) |                        (_)
-"| .  . |_| | _____  ___   _ ____   ___ _ __ ___  _ __ ___
-"| |\/| | | |/ / _ \/ __| | '_ \ \ / / | '_ ` _ \| '__/ __|
-"| |  | | |   <  __/\__ \ | | | \ V /| | | | | | | | | (__
-"\_|  |_/_|_|\_\___||___/ |_| |_|\_/ |_|_| |_| |_|_|  \___|
-"
-" Author: Mike Hartington
-" repo  : https://github.com/mhartington/dotfiles/
-"
-
 " Setup dein  ---------------------------------------------------------------{{{
   if (!isdirectory(expand("$HOME/.config/nvim/repos/github.com/Shougo/dein.vim")))
     call system(expand("mkdir -p $HOME/.config/nvim/repos/github.com"))
     call system(expand("git clone https://github.com/Shougo/dein.vim $HOME/.config/nvim/repos/github.com/Shougo/dein.vim"))
   endif
 
+  if &compatible
+    set nocompatible
+  endif
   set runtimepath+=~/.config/nvim/repos/github.com/Shougo/dein.vim/
   call dein#begin(expand('~/.config/nvim'))
   call dein#add('Shougo/dein.vim')
   call dein#add('haya14busa/dein-command.vim')
-" syntax
+  " GUI
+  call dein#add("chriskempson/base16-vim")
+  call dein#add('vim-airline/vim-airline')
+  call dein#add('vim-airline/vim-airline-themes')
+
+  " Better Visual Guide
+  call dein#add('Yggdroot/indentLine')
+
+  " syntax check
+  call dein#add('w0rp/ale')
+
+  " syntax
   call dein#add('othree/html5.vim')
-  call dein#add('othree/yajs.vim')
-  call dein#add('othree/jsdoc-syntax.vim')
-  call dein#add('heavenshell/vim-jsdoc')
-  call dein#add('elzr/vim-json')
-  call dein#add('HerringtonDarkholme/yats.vim')
   call dein#add('skwp/vim-html-escape')
   call dein#add('hail2u/vim-css3-syntax')
   call dein#add('ap/vim-css-color')
-  call dein#add('tpope/vim-markdown', {'on_ft': 'markdown'})
-  call dein#add('dhruvasagar/vim-table-mode')
-  call dein#add('nelstrom/vim-markdown-folding', {'on_ft': 'markdown'})
-  call dein#add('rhysd/vim-grammarous')
-  call dein#add('tmhedberg/SimpylFold', {'on_ft': 'python'})
-  call dein#add('tmux-plugins/vim-tmux')
+  call dein#add('othree/yajs.vim')
+  call dein#add('othree/jsdoc-syntax.vim')
+  call dein#add('heavenshell/vim-jsdoc')
+  " typescript
+  call dein#add('HerringtonDarkholme/yats.vim')
+
+  call dein#add('elzr/vim-json')
+  " markdown
+  " call dein#add('tpope/vim-markdown', {'on_ft': 'markdown'})
+  " call dein#add('nelstrom/vim-markdown-folding', {'on_ft': 'markdown'})
+
+  " Autocomplete
+  call dein#add('ncm2/ncm2')
+  call dein#add('roxma/nvim-yarp')
+  call dein#add('ncm2/ncm2-bufword')
+  call dein#add('ncm2/ncm2-path')
+  call dein#add('ncm2/ncm2-jedi')
+  " autocomplete (){}[] '`"
   call dein#add('itmammoth/doorboy.vim')
+
+  " Formater
+  call dein#add('Chiel92/vim-autoformat')
+
+  " vim-table-model
+  call dein#add('dhruvasagar/vim-table-mode')
+
+  " grammarous check
+  "call dein#add('rhysd/vim-grammarous')
+
+  call dein#add('tmhedberg/SimpylFold', {'on_ft': 'python'})
+
+  " edit .tmux.conf
+  call dein#add('tmux-plugins/vim-tmux')
+
   call dein#add('valloric/MatchTagAlways', {'on_ft': 'html'})
+
+  " Git
   call dein#add('tpope/vim-fugitive')
   call dein#add('tpope/vim-rhubarb')
   call dein#add('chemzqm/vim-easygit')
@@ -44,32 +72,43 @@
   call dein#add('airblade/vim-gitgutter')
   call dein#add('junegunn/gv.vim')
   call dein#add('lambdalisue/gina.vim')
+  call dein#add('chemzqm/denite-git')
+  call dein#add('mattn/gist-vim')
+  call dein#add('pocari/vim-denite-gists')
+  call dein#local('~/GitHub', {},['vim-folds'])
+  call dein#local('~/GitHub', {},['oceanic-next'])
+  " call dein#local('~/GitHub', {},['operator-next'])
+  call dein#local('~/GitHub', {},['nvim-typescript'])
+  call dein#add('chemzqm/denite-git')
+
+  " Nerd tree
   call dein#add('scrooloose/nerdtree')
+  call dein#add('Shougo/vimfiler.vim')
+  call dein#add('Shougo/unite.vim')
   call dein#add('Xuyuanp/nerdtree-git-plugin')
+  call dein#add('tiagofumo/vim-nerdtree-syntax-highlight')
+
   call dein#add('tpope/vim-repeat')
   call dein#add('tpope/vim-unimpaired')
-  call dein#add('neomake/neomake', {'on_cmd': 'Neomake'})
+  "  call dein#add('neomake/neomake', {'on_cmd': 'Neomake'})
   call dein#add('editorconfig/editorconfig-vim')
   call dein#add('AndrewRadev/switch.vim')
   call dein#add('christoomey/vim-tmux-navigator')
-  call dein#add('vim-airline/vim-airline')
   call dein#add('tpope/vim-surround')
   call dein#add('tomtom/tcomment_vim')
   call dein#add('mattn/emmet-vim')
   call dein#add('sbdchd/neoformat')
-" deoplete stuff
+
+  " deoplete stuff
   call dein#add('Shougo/deoplete.nvim')
   call dein#add('Shougo/deol.nvim')
-
   call dein#add('Shougo/denite.nvim')
   " call dein#add('ctrlpvim/ctrlp.vim')
-
   call dein#add('Shougo/neomru.vim')
   call dein#add('Shougo/context_filetype.vim')
-  call dein#add('chemzqm/denite-git')
 "  call dein#add('ternjs/tern_for_vim', {'build': 'npm install'})
   call dein#add('carlitux/deoplete-ternjs')
-  call dein#add('artur-shaik/vim-javacomplete2')
+  "call dein#add('artur-shaik/vim-javacomplete2')
   call dein#add('Shougo/neco-vim')
   call dein#add('Shougo/neoinclude.vim')
   call dein#add('ujihisa/neco-look')
@@ -86,29 +125,18 @@
   call dein#add('honza/vim-snippets')
   call dein#add('mhinz/vim-sayonara')
   call dein#add('mattn/webapi-vim')
-  call dein#add('mattn/gist-vim')
-  call dein#add('pocari/vim-denite-gists')
   call dein#add('vim-scripts/SyntaxRange')
   call dein#add('terryma/vim-multiple-cursors')
   call dein#add('MartinLafreniere/vim-PairTools')
-  call dein#add('Shougo/vimfiler.vim')
-  call dein#add('Shougo/unite.vim')
-  call dein#add('junegunn/gv.vim')
-  call dein#local('~/GitHub', {},['vim-folds'])
-  call dein#local('~/GitHub', {},['oceanic-next'])
-  " call dein#local('~/GitHub', {},['operator-next'])
-  call dein#local('~/GitHub', {},['nvim-typescript'])
-  call dein#add('chemzqm/denite-git')
   call dein#add('sjl/vitality.vim')
 "  call dein#add('ryanoasis/vim-devicons')
-  call dein#add('tiagofumo/vim-nerdtree-syntax-highlight')
-  call dein#add('vim-airline/vim-airline-themes')
   if dein#check_install()
     call dein#install()
     let pluginsExist=1
   endif
 
   call dein#end()
+  call dein#save_state()
   filetype plugin indent on
 " }}}
 
@@ -116,21 +144,41 @@
 
 "  source ~/.local.vim
 " Neovim Settings
-  set termguicolors
-  set guicursor=n-v-c:block,i-ci-ve:ver25,r-cr:hor20,o:hor50,a:blinkon0
+  syntax on
+  syntax enable
+  " colorscheme elflord
+  " colorscheme
+  let base16colorspace=256
+  colorscheme base16-gruvbox-dark-hard
+  set background=dark
+
+  " True Color Support if it's avaiable in terminal
+  if has("termguicolors")
+    set termguicolors
+  endif
+  if has("gui_running")
+    set guicursor=n-v-c-sm:block,i-ci-ve:block,r-cr-o:blocks
+  endif
+  "  let g:OceanicNext_italic = 1
+  " set termguicolors
+  " set guicursor=n-v-c:block,i-ci-ve:ver25,r-cr:hor20,o:hor50,a:blinkon0
 "                   \,a:blinkwait700-blinkoff400-blinkon250-Cursor/lCursor
 "                   \,sm:block-blinkwait175-blinkoff150-blinkon175
   set cursorline " highlight current line
   set clipboard+=unnamedplus
   set pastetoggle=<f6>
   set nopaste
+  set mouse=a
   autocmd BufWritePre * %s/\s\+$//e
   set noshowmode
+  set noshowmatch
+  set nolazyredraw
   set noswapfile
   filetype on
-  set  number
+  set number
+  set relativenumber
   set numberwidth=1
-  set tabstop=4 shiftwidth=4 expandtab
+
   set conceallevel=0
   set virtualedit=
   set wildmenu
@@ -138,6 +186,14 @@
   set wrap linebreak nolist
   set wildmode=full
   set autoread
+
+  " Search configuration
+  set ignorecase
+  set smartcase
+
+  " Tab and Indent configuration
+  set tabstop=4 shiftwidth=4 expandtab
+
 " leader is ,
   let mapleader = ','
   set undofile
@@ -269,31 +325,61 @@
   " clear search result
   map <leader><space> :let @/=''<cr> " clear search
 
+  " vim-autoformat
+  noremap <leader>fmt :Autoformat<CR>
+
 "}}}"
 
-" Themes, Commands, etc  ----------------------------------------------------{{{
-  syntax on
-  colorscheme elflord
-"  let g:OceanicNext_italic = 1
-"}}}
 
-" MarkDown ------------------------------------------------------------------{{{
+" NCM2 ------------------------------------------------------------------{{{
+  augroup NCM2
+    autocmd!
+    " enable ncm2 for all buffers
+    autocmd BufEnter * call ncm2#enable_for_buffer()
+    " :help Ncm2PopupOpen for more information
+    set completeopt=noinsert,menuone,noselect
+    " When the <Enter> key is pressed while the popup menu is visible, it only
+    " hides the menu. Use this mapping to close the menu and also start a new line.
+    inoremap <expr> <CR> (pumvisible() ? "\<c-y>\<cr>" : "\<CR>")
+    " uncomment this block if you use vimtex for LaTex
+    " autocmd Filetype tex call ncm2#register_source({
+    "           \ 'name': 'vimtex',
+    "           \ 'priority': 8,
+    "           \ 'scope': ['tex'],
+    "           \ 'mark': 'tex',
+    "           \ 'word_pattern': '\w+',
+    "           \ 'complete_pattern': g:vimtex#re#ncm2,
+    "           \ 'on_complete': ['ncm2#on_complete#omni', 'vimtex#complete#omnifunc'],
+    "           \ })
+  augroup END
+"}}}"
 
-  noremap <leader>TM :TableModeToggle<CR>
+" Ale ------------------------------------------------------------------{{{
+  let g:ale_lint_on_enter = 0
+  let g:ale_lint_on_text_changed = 'never'
+  let g:ale_echo_msg_error_str = 'E'
+  let g:ale_echo_msg_warning_str = 'W'
+  let g:ale_echo_msg_format = '[%linter%] %s [%severity%]'
+  let g:ale_linters = {'python': ['flake8']}
+"}}}"
+
+" TableModel ------------------------------------------------------------------{{{
+
+  noremap <leader>tm :TableModeToggle<CR>
   let g:table_mode_corner="|"
 
-  let g:neomake_markdown_proselint_maker = {
-      \ 'errorformat': '%W%f:%l:%c: %m',
-      \ 'postprocess': function('neomake#postprocess#GenericLengthPostprocess'),
-      \}
-  let g:neomake_markdown_enabled_makers = ['alex', 'proselint']
+  "let g:neomake_markdown_proselint_maker = {
+  "    \ 'errorformat': '%W%f:%l:%c: %m',
+  "   \ 'postprocess': function('neomake#postprocess#GenericLengthPostprocess'),
+  "    \}
+  "let g:neomake_markdown_enabled_makers = ['alex', 'proselint']
 
 "}}}
 
 " Javascript ----------------------------------------------------------------{{{
 
   " let g:neoformat_enabled_javascript = ['prettier']
-  let g:neomake_javascript_enabled_makers = ['eslint']
+  " let g:neomake_javascript_enabled_makers = ['eslint']
 
   let g:jsx_ext_required = 1
   let g:jsdoc_allow_input_prompt = 1
@@ -306,17 +392,16 @@
   " let g:nvim_typescript#type_info_on_hold=1
   " let g:nvim_typescript#max_completion_detail=100
   "
-  let g:neomake_typescript_tsc_maker = {
-            \ 'append_file': 0,
-            \ 'args': ['--project', getcwd() . '/tsconfig.json', '--noEmit'],
-            \ 'errorformat':
-            \   '%E%f %#(%l\,%c): error %m,' .
-            \   '%E%f %#(%l\,%c): %m,' .
-            \   '%Eerror %m,' .
-            \   '%C%\s%\+%m'
-            \}
-
-  let g:neomake_typescript_enabled_makers = ['tsc']
+  " let g:neomake_typescript_tsc_maker = {
+  "          \ 'append_file': 0,
+  "         \ 'args': ['--project', getcwd() . '/tsconfig.json', '--noEmit'],
+  "          \ 'errorformat':
+  "          \   '%E%f %#(%l\,%c): error %m,' .
+  "          \   '%E%f %#(%l\,%c): %m,' .
+  "          \   '%Eerror %m,' .
+  "          \   '%C%\s%\+%m'
+  "          \}  "
+  "let g:neomake_typescript_enabled_makers = ['tsc']
   map <silent> <leader>gd :TSDoc <cr>
   map <silent> <leader>gt :TSType <cr>
   map <silent> <leader>@ :Denite -buffer-name=TSDocumentSymbol TSDocumentSymbol <cr>
@@ -354,12 +439,12 @@
 
 " Java ----------------------------------------------------------------------{{{
 
-  autocmd FileType java setlocal omnifunc=javacomplete#Complete
+  "autocmd FileType java setlocal omnifunc=javacomplete#Complete
 
 "}}}
 
 " HTML ----------------------------------------------------------------------{{{
-  let g:neomake_html_enabled_makers = []
+  "let g:neomake_html_enabled_makers = []
 
 " }}}
 
@@ -784,10 +869,14 @@ let g:neosnippet#snippets_directory='~/.config/nvim/mysnippets'
   let g:airline#extensions#tabline#fnamemod = ':t'
   let g:airline#extensions#tabline#buffer_idx_mode = 1
   let g:airline_powerline_fonts = 1
-  let g:airline#extensions#neomake#error_symbol='• '
-  let g:airline#extensions#neomake#warning_symbol='•  '
+  "let g:airline#extensions#neomake#error_symbol='• '
+  "let g:airline#extensions#neomake#warning_symbol='•  '
   let g:airline_symbols.branch = ''
   let g:airline_theme='light'
+  let g:airline#extensions#ale#enabled = 1
+  let airline#extensions#ale#error_symbol = 'E:'
+  let airline#extensions#ale#warning_symbol = 'W:'
+
   cnoreabbrev <silent> <expr> x getcmdtype() == ":" && getcmdline() == 'x' ? 'Sayonara' : 'x'
   tmap <leader>x <c-\><c-n>:bp! <BAR> bd! #<CR>
   nmap <leader>t :term<cr>
@@ -830,8 +919,8 @@ let g:neosnippet#snippets_directory='~/.config/nvim/mysnippets'
 
 " Linting -------------------------------------------------------------------{{{
 
-  autocmd! BufWritePost * Neomake
-  let g:neomake_warning_sign = {'text': '•'}
-  let g:neomake_error_sign = {'text': '•'}
+  "autocmd! BufWritePost * Neomake
+  "let g:neomake_warning_sign = {'text': '•'}
+  "let g:neomake_error_sign = {'text': '•'}
 
 "}}}
