@@ -34,9 +34,6 @@
   call dein#add('HerringtonDarkholme/yats.vim')
 
   call dein#add('elzr/vim-json')
-  " markdown
-  " call dein#add('tpope/vim-markdown', {'on_ft': 'markdown'})
-  " call dein#add('nelstrom/vim-markdown-folding', {'on_ft': 'markdown'})
 
   " Autocomplete
   call dein#add('ncm2/ncm2')
@@ -47,14 +44,18 @@
   " autocomplete (){}[] '`"
   call dein#add('itmammoth/doorboy.vim')
 
+  " java complete2
+  call dein#add('artur-shaik/vim-javacomplete2')
+
   " Formater
   call dein#add('Chiel92/vim-autoformat')
+  call dein#add('sbdchd/neoformat')
+
+  " Tagbar: a class outline viewer for Vim
+  call dein#add('majutsushi/tagbar')
 
   " vim-table-model
   call dein#add('dhruvasagar/vim-table-mode')
-
-  " grammarous check
-  "call dein#add('rhysd/vim-grammarous')
 
   call dein#add('tmhedberg/SimpylFold', {'on_ft': 'python'})
 
@@ -77,7 +78,6 @@
   call dein#add('pocari/vim-denite-gists')
   call dein#local('~/GitHub', {},['vim-folds'])
   call dein#local('~/GitHub', {},['oceanic-next'])
-  " call dein#local('~/GitHub', {},['operator-next'])
   call dein#local('~/GitHub', {},['nvim-typescript'])
   call dein#add('chemzqm/denite-git')
 
@@ -90,7 +90,6 @@
 
   call dein#add('tpope/vim-repeat')
   call dein#add('tpope/vim-unimpaired')
-  "  call dein#add('neomake/neomake', {'on_cmd': 'Neomake'})
   call dein#add('editorconfig/editorconfig-vim')
   call dein#add('AndrewRadev/switch.vim')
   call dein#add('christoomey/vim-tmux-navigator')
@@ -99,26 +98,7 @@
   call dein#add('mattn/emmet-vim')
   call dein#add('sbdchd/neoformat')
 
-  " deoplete stuff
-  call dein#add('Shougo/deoplete.nvim')
-  call dein#add('Shougo/deol.nvim')
   call dein#add('Shougo/denite.nvim')
-  " call dein#add('ctrlpvim/ctrlp.vim')
-  call dein#add('Shougo/neomru.vim')
-  call dein#add('Shougo/context_filetype.vim')
-"  call dein#add('ternjs/tern_for_vim', {'build': 'npm install'})
-  call dein#add('carlitux/deoplete-ternjs')
-  "call dein#add('artur-shaik/vim-javacomplete2')
-  call dein#add('Shougo/neco-vim')
-  call dein#add('Shougo/neoinclude.vim')
-  call dein#add('ujihisa/neco-look')
-  call dein#add('davidhalter/jedi-vim', {'on_ft': 'python'})
-  call dein#add('zchee/deoplete-jedi')
-"  call dein#add('zchee/nvim-go', {'build': 'gb build', 'on_ft': 'go'})
-"  call dein#add('zchee/nvim-go', {'build': 'make'})
-  call dein#add('zchee/deoplete-go')
-  call dein#add('junegunn/limelight.vim')
-  call dein#add('Konfekt/FastFold')
   call dein#add('Shougo/neosnippet.vim')
   call dein#add('Shougo/neosnippet-snippets')
   call dein#add('Shougo/echodoc.vim')
@@ -126,10 +106,7 @@
   call dein#add('mhinz/vim-sayonara')
   call dein#add('mattn/webapi-vim')
   call dein#add('vim-scripts/SyntaxRange')
-  call dein#add('terryma/vim-multiple-cursors')
   call dein#add('MartinLafreniere/vim-PairTools')
-  call dein#add('sjl/vitality.vim')
-"  call dein#add('ryanoasis/vim-devicons')
   if dein#check_install()
     call dein#install()
     let pluginsExist=1
@@ -165,7 +142,7 @@
 "                   \,a:blinkwait700-blinkoff400-blinkon250-Cursor/lCursor
 "                   \,sm:block-blinkwait175-blinkoff150-blinkon175
   set cursorline " highlight current line
-  set clipboard+=unnamedplus
+  "set clipboard+=unnamedplus
   set pastetoggle=<f6>
   set nopaste
   set mouse=a
@@ -214,6 +191,9 @@
   set shortmess=atIc
   set isfname-==
   set spell
+  if (executable('pbcopy') || executable('xclip') || executable('xsel')) && has('clipboard')
+    set clipboard=unnamed
+  endif
 " }}}
 
 " System mappings  ----------------------------------------------------------{{{
@@ -241,10 +221,10 @@
   tmap <esc> <c-\><c-n><esc><cr>
 " exit insert, dd line, enter insert
   inoremap <c-d> <esc>ddi
-  noremap H ^
-  noremap L g_
-  noremap J 5j
-  noremap K 5k
+  "noremap H ^
+  "noremap L g_
+  "noremap J 5j
+  "noremap K 5k
   " nnoremap K 5k
 " this is the best, let me tell you why
 " how annoying is that everytime you want to do something in vim
@@ -328,6 +308,9 @@
   " vim-autoformat
   noremap <leader>fmt :Autoformat<CR>
 
+  " tagbar
+  nmap <leader>o :TagbarToggle<CR>
+
 "}}}"
 
 
@@ -355,8 +338,9 @@
 "}}}"
 
 " Ale ------------------------------------------------------------------{{{
-  let g:ale_lint_on_enter = 0
-  let g:ale_lint_on_text_changed = 'never'
+  let g:ale_lint_on_enter = 1
+  "let g:ale_lint_on_text_changed = 'never'
+  let g:ale_lint_on_text_changed = 'always'
   let g:ale_echo_msg_error_str = 'E'
   let g:ale_echo_msg_warning_str = 'W'
   let g:ale_echo_msg_format = '[%linter%] %s [%severity%]'
@@ -376,70 +360,14 @@
 
 "}}}
 
-" Javascript ----------------------------------------------------------------{{{
-
-  " let g:neoformat_enabled_javascript = ['prettier']
-  " let g:neomake_javascript_enabled_makers = ['eslint']
-
-  let g:jsx_ext_required = 1
-  let g:jsdoc_allow_input_prompt = 1
-  let g:jsdoc_input_description = 1
-  let g:vim_json_syntax_conceal = 0
-  let g:tern#command = ['tern']
-  let g:tern#arguments = ['--persistent']
-
-  " let g:nvim_typescript#signature_complete=1
-  " let g:nvim_typescript#type_info_on_hold=1
-  " let g:nvim_typescript#max_completion_detail=100
-  "
-  " let g:neomake_typescript_tsc_maker = {
-  "          \ 'append_file': 0,
-  "         \ 'args': ['--project', getcwd() . '/tsconfig.json', '--noEmit'],
-  "          \ 'errorformat':
-  "          \   '%E%f %#(%l\,%c): error %m,' .
-  "          \   '%E%f %#(%l\,%c): %m,' .
-  "          \   '%Eerror %m,' .
-  "          \   '%C%\s%\+%m'
-  "          \}  "
-  "let g:neomake_typescript_enabled_makers = ['tsc']
-  map <silent> <leader>gd :TSDoc <cr>
-  map <silent> <leader>gt :TSType <cr>
-  map <silent> <leader>@ :Denite -buffer-name=TSDocumentSymbol TSDocumentSymbol <cr>
-  " autocmd FileType typescript setl omnifunc=TSComplete
-  let g:nvim_typescript#kind_symbols = {
-      \ 'keyword': 'keyword',
-      \ 'class': '',
-      \ 'interface': 'interface',
-      \ 'script': 'script',
-      \ 'module': '',
-      \ 'local class': 'local class',
-      \ 'type': 'type',
-      \ 'enum': '',
-      \ 'enum member': '',
-      \ 'alias': '',
-      \ 'type parameter': 'type param',
-      \ 'primitive type': 'primitive type',
-      \ 'var': '',
-      \ 'local var': '',
-      \ 'property': '',
-      \ 'let': '',
-      \ 'const': '',
-      \ 'label': 'label',
-      \ 'parameter': 'param',
-      \ 'index': 'index',
-      \ 'function': '',
-      \ 'local function': 'local function',
-      \ 'method': '',
-      \ 'getter': '',
-      \ 'setter': '',
-      \ 'call': 'call',
-      \ 'constructor': '',
-      \}
+" IndentLine ----------------------------------------------------------------------{{{
+  " let g:indentLine_setConceal = 0
+  let g:indentLine_fileTypeExclude = ['json', 'text', 'markdown']
 " }}}
 
 " Java ----------------------------------------------------------------------{{{
 
-  "autocmd FileType java setlocal omnifunc=javacomplete#Complete
+  autocmd FileType java setlocal omnifunc=javacomplete#Complete
 
 "}}}
 
@@ -490,7 +418,7 @@
       return line . '…' . repeat(" ",fillcharcount)
   endfunction " }}}
 
-  set foldtext=MyFoldText()
+  "set foldtext=MyFoldText()
 
   autocmd InsertEnter * if !exists('w:last_fdm') | let w:last_fdm=&foldmethod | setlocal foldmethod=manual | endif
   autocmd InsertLeave,WinLeave * if exists('w:last_fdm') | let &l:foldmethod=w:last_fdm | unlet w:last_fdm | endif
@@ -652,49 +580,6 @@ let g:neosnippet#snippets_directory='~/.config/nvim/mysnippets'
 
 "}}}
 
-" Deoplete ------------------------------------------------------------------{{{
-
-" enable deoplete
-  let g:deoplete#enable_at_startup = 1
-  let g:echodoc_enable_at_startup=1
-  set splitbelow
-  set completeopt+=noselect
-  set completeopt-=preview
-  autocmd CompleteDone * pclose
-
-  function! Multiple_cursors_before()
-    let b:deoplete_disable_auto_complete=2
-  endfunction
-  function! Multiple_cursors_after()
-    let b:deoplete_disable_auto_complete=0
-  endfunction
-  let g:deoplete#file#enable_buffer_path=1
-
-  call deoplete#custom#source('buffer', 'mark', 'ℬ')
-  call deoplete#custom#source('ternjs', 'mark', '')
-  call deoplete#custom#source('omni', 'mark', '⌾')
-  call deoplete#custom#source('file', 'mark', 'file')
-  call deoplete#custom#source('jedi', 'mark', '')
-  call deoplete#custom#source('typescript', 'mark', '')
-  call deoplete#custom#source('neosnippet', 'mark', '')
-
-  call deoplete#custom#source('typescript',  'rank', 630)
-  " let g:deoplete#omni_patterns = {}
-  " let g:deoplete#omni_patterns.html = ''
-  function! Preview_func()
-    if &pvw
-      setlocal nonumber norelativenumber
-     endif
-  endfunction
-  autocmd WinEnter * call Preview_func()
-  let g:deoplete#ignore_sources = {}
-  let g:deoplete#ignore_sources._ = ['around']
-
-  " let g:deoplete#enable_debug = 1
-  " call deoplete#enable_logging('DEBUG', 'deoplete.log')
-  " call deoplete#custom#source('typescript', 'debug_enabled', 1)
-"}}}
-
 " Emmet customization -------------------------------------------------------{{{
 
 " Remapping <C-y>, just doesn't cut it.
@@ -724,122 +609,6 @@ let g:neosnippet#snippets_directory='~/.config/nvim/mysnippets'
   let g:user_emmet_complete_tag = 0
   let g:user_emmet_install_global = 0
   autocmd FileType html,css,scss EmmetInstall
-"}}}
-
-" Denite --------------------------------------------------------------------{{{
-
-  let g:webdevicons_enable_denite = 0
-  let s:menus = {}
-
-  call denite#custom#option('_', {
-        \ 'prompt': '❯',
-        \ 'winheight': 10,
-        \ 'reversed': 1,
-        \ 'highlight_matched_char': 'Underlined',
-        \ 'highlight_mode_normal': 'CursorLine',
-        \ 'updatetime': 1,
-        \ 'auto_resize': 1,
-        \})
-  call denite#custom#option('TSDocumentSymbol', {
-        \ 'prompt': ' @' ,
-        \ 'reversed': 0,
-        \})
-  call denite#custom#var('file_rec', 'command',['rg', '--threads', '2', '--files', '--glob', '!.git'])
-  " call denite#custom#source('file_rec', 'vars', {
-  "       \ 'command': [
-  "       \ 'ag', '--follow','--nogroup','--hidden', '--column', '-g', '', '--ignore', '.git', '--ignore', '*.png'
-  "       \] })
-  call denite#custom#source('file_rec', 'sorters', ['sorter_sublime'])
-  call denite#custom#source('grep', 'matchers', ['matcher_regexp'])
-  call denite#custom#var('grep', 'command', ['rg'])
-	call denite#custom#var('grep', 'default_opts',['--vimgrep'])
-	call denite#custom#var('grep', 'recursive_opts', [])
-	call denite#custom#var('grep', 'pattern_opt', ['--regexp'])
-	call denite#custom#var('grep', 'separator', ['--'])
-	call denite#custom#var('grep', 'final_opts', [])
-
-  nnoremap <silent> <c-p> :Denite file_rec<CR>
-  nnoremap <silent> <leader>h :Denite  help<CR>
-  nnoremap <silent> <leader>c :Denite colorscheme<CR>
-  nnoremap <silent> <leader>b :Denite buffer<CR>
-  nnoremap <silent> <leader>a :Denite grep:::!<CR>
-  nnoremap <silent> <leader>u :call dein#update()<CR>
-  nnoremap <silent> <Leader>i :Denite menu:ionic <CR>
-  call denite#custom#map('insert','<C-n>','<denite:move_to_next_line>','noremap')
-	call denite#custom#map('insert','<C-p>','<denite:move_to_previous_line>','noremap')
-  call denite#custom#filter('matcher_ignore_globs', 'ignore_globs',
-    \ [ '.git/', '.ropeproject/', '__pycache__/',
-    \   'venv/', 'images/', '*.min.*', 'img/', 'fonts/'])
-  call denite#custom#var('menu', 'menus', s:menus)
-
-"}}}
-
-" Git from denite...ERMERGERD -----------------------------------------------{{{
-  let s:menus.git = {
-    \ 'description' : 'Fugitive interface',
-    \}
-  let s:menus.git.command_candidates = [
-    \[' git status', 'Gstatus'],
-    \[' git diff', 'Gvdiff'],
-    \[' git commit', 'Gcommit'],
-    \[' git stage/add', 'Gwrite'],
-    \[' git checkout', 'Gread'],
-    \[' git rm', 'Gremove'],
-    \[' git cd', 'Gcd'],
-    \[' git push', 'exe "Git! push " input("remote/branch: ")'],
-    \[' git pull', 'exe "Git! pull " input("remote/branch: ")'],
-    \[' git pull rebase', 'exe "Git! pull --rebase " input("branch: ")'],
-    \[' git checkout branch', 'exe "Git! checkout " input("branch: ")'],
-    \[' git fetch', 'Gfetch'],
-    \[' git merge', 'Gmerge'],
-    \[' git browse', 'Gbrowse'],
-    \[' git head', 'Gedit HEAD^'],
-    \[' git parent', 'edit %:h'],
-    \[' git log commit buffers', 'Glog --'],
-    \[' git log current file', 'Glog -- %'],
-    \[' git log last n commits', 'exe "Glog -" input("num: ")'],
-    \[' git log first n commits', 'exe "Glog --reverse -" input("num: ")'],
-    \[' git log until date', 'exe "Glog --until=" input("day: ")'],
-    \[' git log grep commits',  'exe "Glog --grep= " input("string: ")'],
-    \[' git log pickaxe',  'exe "Glog -S" input("string: ")'],
-    \[' git index', 'exe "Gedit " input("branchname\:filename: ")'],
-    \[' git mv', 'exe "Gmove " input("destination: ")'],
-    \[' git grep',  'exe "Ggrep " input("string: ")'],
-    \[' git prompt', 'exe "Git! " input("command: ")'],
-    \] " Append ' --' after log to get commit info commit buffers
-"}}}
-
-" Ionic denite source -------------------------------------------------------{{{
-
-  function! Ionic(job) abort
-    if a:job ==# "serve"
-      enew!
-      let filename = 'Ionic:\ '. a:job
-      call termopen('ionic '. a:job)
-      exe 'file 'filename
-      startinsert
-    else
-      let platform = input('platform: ')
-      enew!
-      let filename = 'Ionic:\ '. a:job
-      call termopen('ionic '. a:job . ' ' . platform)
-      exe 'file 'filename
-      startinsert
-    endif
-  endfunction
-
-  function ExitHandle()
-    echom self
-  endfunction
-
-  let s:menus.ionic = {
-    \ 'description' : 'some rando ionic stuff',
-    \}
-  let s:menus.ionic.command_candidates = [
-    \[' serve', 'call Ionic("serve")' ],
-    \[' run device', 'call Ionic("run")'],
-    \[' emulate device', 'call Ionic("emulate")'],
-    \]
 "}}}
 
 " Navigate between vim buffers and tmux panels ------------------------------{{{
@@ -922,5 +691,53 @@ let g:neosnippet#snippets_directory='~/.config/nvim/mysnippets'
   "autocmd! BufWritePost * Neomake
   "let g:neomake_warning_sign = {'text': '•'}
   "let g:neomake_error_sign = {'text': '•'}
+
+"}}}
+
+" Denite --------------------------------------------------------------------{{{
+
+  let g:webdevicons_enable_denite = 0
+  let s:menus = {}
+
+  call denite#custom#option('_', {
+        \ 'prompt': '❯',
+        \ 'winheight': 10,
+        \ 'reversed': 1,
+        \ 'highlight_matched_char': 'Underlined',
+        \ 'highlight_mode_normal': 'CursorLine',
+        \ 'updatetime': 1,
+        \ 'auto_resize': 1,
+        \})
+  call denite#custom#option('TSDocumentSymbol', {
+        \ 'prompt': ' @' ,
+        \ 'reversed': 0,
+        \})
+  call denite#custom#var('file_rec', 'command',['rg', '--threads', '2', '--files', '--glob', '!.git'])
+  " call denite#custom#source('file_rec', 'vars', {
+  "       \ 'command': [
+  "       \ 'ag', '--follow','--nogroup','--hidden', '--column', '-g', '', '--ignore', '.git', '--ignore', '*.png'
+  "       \] })
+  call denite#custom#source('file_rec', 'sorters', ['sorter_sublime'])
+  call denite#custom#source('grep', 'matchers', ['matcher_regexp'])
+  call denite#custom#var('grep', 'command', ['rg'])
+	call denite#custom#var('grep', 'default_opts',['--vimgrep'])
+	call denite#custom#var('grep', 'recursive_opts', [])
+	call denite#custom#var('grep', 'pattern_opt', ['--regexp'])
+	call denite#custom#var('grep', 'separator', ['--'])
+	call denite#custom#var('grep', 'final_opts', [])
+
+  nnoremap <silent> <c-p> :Denite file_rec<CR>
+  nnoremap <silent> <leader>h :Denite  help<CR>
+  nnoremap <silent> <leader>c :Denite colorscheme<CR>
+  nnoremap <silent> <leader>b :Denite buffer<CR>
+  nnoremap <silent> <leader>a :Denite grep:::!<CR>
+  nnoremap <silent> <leader>u :call dein#update()<CR>
+  nnoremap <silent> <Leader>i :Denite menu:ionic <CR>
+  call denite#custom#map('insert','<C-n>','<denite:move_to_next_line>','noremap')
+	call denite#custom#map('insert','<C-p>','<denite:move_to_previous_line>','noremap')
+  call denite#custom#filter('matcher_ignore_globs', 'ignore_globs',
+    \ [ '.git/', '.ropeproject/', '__pycache__/',
+    \   'venv/', 'images/', '*.min.*', 'img/', 'fonts/'])
+  call denite#custom#var('menu', 'menus', s:menus)
 
 "}}}
