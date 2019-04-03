@@ -39,6 +39,9 @@ apt_packages:
   - docker-ce
   - npm
 
-
+snap_packages:
+  - name: ripgrep
+    classic: yes
 
 deb_uris: []
+

@@ -16,3 +16,4 @@ sudo apt-add-repository ppa:ansible/ansible
 # sudo add-apt-repository universe
 sudo apt update
 sudo apt install ansible git -y
+sudo snap install ripgrep --classic

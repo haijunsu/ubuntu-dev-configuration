@@ -74,5 +74,5 @@ pip_packages:
 #   version: "0.16.3" # default: N/A
 
 
-go_repos:
-  - github.com/constabulary/gb/...
+go_repos: []
+#  - github.com/constabulary/gb/...

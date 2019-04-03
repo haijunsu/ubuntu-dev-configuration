@@ -712,21 +712,21 @@ let g:neosnippet#snippets_directory='~/.config/nvim/mysnippets'
         \ 'prompt': ' @' ,
         \ 'reversed': 0,
         \})
-  call denite#custom#var('file_rec', 'command',['rg', '--threads', '2', '--files', '--glob', '!.git'])
+  call denite#custom#var('file/rec', 'command',['ripgrep.rg', '--threads', '2', '--files', '--glob', '!.git'])
   " call denite#custom#source('file_rec', 'vars', {
   "       \ 'command': [
   "       \ 'ag', '--follow','--nogroup','--hidden', '--column', '-g', '', '--ignore', '.git', '--ignore', '*.png'
   "       \] })
-  call denite#custom#source('file_rec', 'sorters', ['sorter_sublime'])
+  call denite#custom#source('file/rec', 'sorters', ['sorter_sublime'])
   call denite#custom#source('grep', 'matchers', ['matcher_regexp'])
-  call denite#custom#var('grep', 'command', ['rg'])
-	call denite#custom#var('grep', 'default_opts',['--vimgrep'])
-	call denite#custom#var('grep', 'recursive_opts', [])
-	call denite#custom#var('grep', 'pattern_opt', ['--regexp'])
-	call denite#custom#var('grep', 'separator', ['--'])
-	call denite#custom#var('grep', 'final_opts', [])
+  call denite#custom#var('grep', 'command', ['ripgrep.rg'])
+  call denite#custom#var('grep', 'default_opts',['--vimgrep'])
+  call denite#custom#var('grep', 'recursive_opts', [])
+  call denite#custom#var('grep', 'pattern_opt', ['--regexp'])
+  call denite#custom#var('grep', 'separator', ['--'])
+  call denite#custom#var('grep', 'final_opts', [])
 
-  nnoremap <silent> <c-p> :Denite file_rec<CR>
+  nnoremap <silent> <c-p> :Denite file/rec<CR>
   nnoremap <silent> <leader>h :Denite  help<CR>
   nnoremap <silent> <leader>c :Denite colorscheme<CR>
   nnoremap <silent> <leader>b :Denite buffer<CR>
@@ -734,7 +734,7 @@ let g:neosnippet#snippets_directory='~/.config/nvim/mysnippets'
   nnoremap <silent> <leader>u :call dein#update()<CR>
   nnoremap <silent> <Leader>i :Denite menu:ionic <CR>
   call denite#custom#map('insert','<C-n>','<denite:move_to_next_line>','noremap')
-	call denite#custom#map('insert','<C-p>','<denite:move_to_previous_line>','noremap')
+  call denite#custom#map('insert','<C-p>','<denite:move_to_previous_line>','noremap')
   call denite#custom#filter('matcher_ignore_globs', 'ignore_globs',
     \ [ '.git/', '.ropeproject/', '__pycache__/',
     \   'venv/', 'images/', '*.min.*', 'img/', 'fonts/'])
