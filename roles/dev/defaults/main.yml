@@ -24,6 +24,7 @@ apt_packages:
   - ctags
   - cowsay
   - wget
+  - git
   - python
   - python-dev
   - python-pip

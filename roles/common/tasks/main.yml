@@ -54,6 +54,8 @@
       - ~/.config/nvim/mysnippets
       - ~/.local/share/fonts
       - ~/.local/bin
+      - ~/.SpaceVim.d
+      - ~/.SpaceVim.d/autoload
   become: yes
   become_user: "{{ ansible_user_id }}"
 
@@ -64,12 +66,17 @@
     mode: 0555
   become: yes
 
-- name: Install Nerd Font
-  get_url:
-    url: https://github.com/ryanoasis/nerd-fonts/raw/master/patched-fonts/DroidSansMono/complete/Droid%20Sans%20Mono%20Nerd%20Font%20Complete.otf
-    dest: ~/.local/share/fonts/DroidSansMonoNerdFontComplete.otf
-    mode: 0444
+# - name: Install Nerd Font
+  # get_url:
+    # url: https://github.com/ryanoasis/nerd-fonts/raw/master/patched-fonts/DroidSansMono/complete/Droid%20Sans%20Mono%20Nerd%20Font%20Complete.otf
+    # dest: ~/.local/share/fonts/DroidSansMonoNerdFontComplete.otf
+    # mode: 0444
 
+- name: install SpaceVIM 
+  shell: curl -sLf https://spacevim.org/install.sh | bash
+  args:
+    warn: false
+  become_user: "{{ ansible_user_id }}"
 
 - name: Copy files
   copy:
@@ -79,9 +86,11 @@
       - { src: "bash_profile", dest: "~/.bash_profile" }
       - { src: "myalias", dest: "~/.bash/myalias" }
       - { src: "myenv", dest: "~/.bash/myenv" }
-      - { src: "init.vim", dest: "~/.config/nvim/init.vim" }
-      - { src: "markdown.snip", dest: "~/.config/nvim/mysnippets/markdown.snip" }
+        #- { src: "init.vim", dest: "~/.config/nvim/init.vim" }
+        #- { src: "markdown.snip", dest: "~/.config/nvim/mysnippets/markdown.snip" }
       - { src: "powerline-shell.json", dest: "~/.powerline-shell.json" }
       - { src: "tmux.conf", dest: "~/.tmux.conf" }
+      - { src: "SpaceVim_init.toml", dest: "~/.SpaceVim.d/init.toml" }
+      - { src: "SpaceVim_config.vim", dest: "~/.SpaceVim.d/autoload/config.vim" }
   become: yes
   become_user: "{{ ansible_user_id }}"
