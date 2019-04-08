@@ -46,6 +46,21 @@
   name = "lang#html"
 
 [[layers]]
+  name = "lang#java"
+
+[[layers]]
+  name = "lang#php"
+
+[[layers]]
+  name = "lang#sh"
+
+[[layers]]
+  name = "lang#dockerfile"
+
+[[layers]]
+  name = "lang#json"
+
+[[layers]]
   name = "git"
 
 [[layers]]

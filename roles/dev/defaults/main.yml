@@ -39,6 +39,7 @@ apt_packages:
   - default-jdk
   - docker-ce
   - npm
+  - composer
 
 snap_packages:
   - name: ripgrep
