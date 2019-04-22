@@ -32,4 +32,7 @@ func! config#before() abort
 
   " VimFiler toggle
   map <silent> - :VimFiler -toggle<CR>
+
+  " disable conceal for markdown file
+  nnoremap <leader>m - :set conceallevel=0<CR>
 endf
