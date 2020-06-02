@@ -20,4 +20,3 @@ fi
 # add user path
 PATH=~/bin:~/.local/bin:${PATH}
 export PATH
-

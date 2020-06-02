@@ -1,5 +1,5 @@
 ---
-ver_docker_compose: 1.25.5
+ver_docker_compose: "1.25.5"
 
 composer_packages: []
   # - name: drush

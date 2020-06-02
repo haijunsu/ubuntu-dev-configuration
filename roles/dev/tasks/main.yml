@@ -42,6 +42,15 @@
     channel: "{{ item.channel | default('stable') }}"
   with_items: '{{ snap_packages }}'
   become: true
+  
+# Install pear packages (support in 2.4)
+- name: Install pear packages
+  pear:
+    name: '{{ item.name }}'
+    state: "{{ item.state | default('present') }}"
+  with_items: '{{ pear_packages }}'
+  become: true
+
 
 # Install deb packages from uris
 - name: check if deb packages already installed
