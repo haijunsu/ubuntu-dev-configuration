@@ -22,7 +22,7 @@ func! config#before() abort
   nnoremap <Leader>dtw :%s/\s\+$//e<CR>:let @/=''<CR>
 
   " clear search result = <space>sc
-  " map <leader>noh :let @/=''<cr>
+  map <leader>sc :let @/=''<cr>
 
   " vim-autoformat
   noremap <leader>fmt :Neoformat<CR>
@@ -33,6 +33,23 @@ func! config#before() abort
   " VimFiler toggle
   map <silent> - :VimFiler -toggle<CR>
 
-  " disable conceal for markdown file
+  " disable conceal for markdown file 
   nnoremap <leader>m - :set conceallevel=0<CR>
+
+  " Retab  
+  nnoremap <leader>rt - :set tabstop=2 shiftwidth=2 expandtab<CR>:retab<CR>
+
+  " github
+  let g:github_dashboard = { 'username': $GITHUB_ACCOUNT, 'password': $GITHUB_TOKEN }
+  let g:gista#client#default_username = $GITHUB_ACCOUNT
+
+  " snippet engine
+  let g:spacevim_snippet_engine = "ultisnips"
+  
+  " Copy/Paste from clipboard
+  noremap <Leader>y "*y
+  noremap <Leader>p "*p
+  noremap <Leader>Y "+y
+  noremap <Leader>P "+p
+
 endf

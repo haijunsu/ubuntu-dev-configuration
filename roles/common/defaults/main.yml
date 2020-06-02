@@ -1,4 +1,6 @@
 ---
+ver_docker_compose: 1.25.5
+
 composer_packages: []
   # - name: drush
   #   state: present # present/absent, default: present
@@ -16,6 +18,8 @@ gem_packages:
 npm_packages:
   - name: alex
   - name: neovim
+  - name: js-beautify
+  - name: eslint-cli
   # - name: webpack
   #   state: present # present/absent/latest, default: present
   #   version: "^2.6" # default: N/A
@@ -23,49 +27,31 @@ pip_packages:
   - name: neovim
     state: latest
     executable: pip3
-  - name: neovim
-    state: latest
-    executable: pip2
   - name: proselint
     state: latest
     executable: pip3
-  - name: proselint
-    state: latest
-    executable: pip2
 # powerline shell
-  - name: nose
-    state: latest
-    executable: pip2
-  - name: mock
-    state: latest
-    executable: pip2
-  - name: sh
-    state: latest
-    executable: pip2
-  - name: powerline-shell
-    state: latest
-    executable: pip2
-  - name: powerline-shell
+  - name: powerline-status
     state: latest
     executable: pip3
   - name: jedi
     state: latest
     executable: pip3
-  - name: jedi
-    state: latest
-    executable: pip2
   - name: flake8
     state: latest
     executable: pip3
-  - name: flake8
-    state: latest
-    executable: pip2
-  - name: autopep8
+  - name: autoflake
     state: latest
     executable: pip3
   - name: autopep8
     state: latest
-    executable: pip2
+    executable: pip3
+  - name: isort
+    state: latest
+    executable: pip3
+  - name: yapf
+    state: latest
+    executable: pip3
   - name: pynvim
     state: latest
     executable: pip3

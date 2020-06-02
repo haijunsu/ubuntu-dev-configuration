@@ -34,14 +34,14 @@
   become: true
 
 # Install snap packages (support in 2.8)
-#- name: Install snap packages
-#  snap:
-#    name: '{{ item.name }}'
-#    state: "{{ item.state | default('present') }}"
-#    classic: "{{ item.classic | default('no') }}"
-#    channel: "{{ item.channel | default('stable') }}"
-#  with_items: '{{ snap_packages }}'
-#  become: true
+- name: Install snap packages
+  snap:
+    name: '{{ item.name }}'
+    state: "{{ item.state | default('present') }}"
+    classic: "{{ item.classic | default('no') }}"
+    channel: "{{ item.channel | default('stable') }}"
+  with_items: '{{ snap_packages }}'
+  become: true
 
 # Install deb packages from uris
 - name: check if deb packages already installed
