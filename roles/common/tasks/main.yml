@@ -54,6 +54,7 @@
       - ~/.local/bin
       - ~/.SpaceVim.d
       - ~/.SpaceVim.d/autoload
+      - ~/.SpaceVim.d/UltiSnips
   become: yes
   become_user: "{{ ansible_user_id }}"
 
@@ -85,7 +86,9 @@
       - { src: "myalias", dest: "~/.bash/myalias" }
       - { src: "myenv", dest: "~/.bash/myenv" }
       - { src: "tmux.conf", dest: "~/.tmux.conf" }
+      - { src: "powerline-shell.json", dest: "~/.powerline-shell.json" }
       - { src: "SpaceVim_init.toml", dest: "~/.SpaceVim.d/init.toml" }
       - { src: "SpaceVim_config.vim", dest: "~/.SpaceVim.d/autoload/config.vim" }
+      - { src: "SpaceVim_all.snippets", dest: "~/.SpaceVim.d/UltiSnips/all.snippets" }
   become: yes
   become_user: "{{ ansible_user_id }}"

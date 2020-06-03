@@ -1,7 +1,8 @@
 ---
 ver_docker_compose: "1.25.5"
 
-composer_packages: []
+composer_packages: 
+  - name: vimeo/psalm
   # - name: drush
   #   state: present # present/absent, default: present
   #   version: "^8.1" # default: N/A
@@ -31,7 +32,7 @@ pip_packages:
     state: latest
     executable: pip3
 # powerline shell
-  - name: powerline-status
+  - name: powerline-shell
     state: latest
     executable: pip3
   - name: jedi

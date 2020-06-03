@@ -1,0 +1,19 @@
+{
+  "segments": [
+    "hostname",
+    "virtual_env",
+    "cwd",
+    "git",
+    "jobs",
+    "set_term_title",
+    "root"
+  ],
+  "mode": "patched",
+  "cwd": {
+    "mode": "plain",
+    "max_depth": 2
+  },
+  "hostname": {
+    "colorize": true
+  }
+}
