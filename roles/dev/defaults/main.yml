@@ -39,11 +39,15 @@ apt_packages:
   - php7.4-cli
   - php-pear
   - nodejs
+  - jekyll
+  - rbenv
 
 snap_packages:
   - name: ripgrep
     classic: yes
   - name: docker
+  - name: ruby
+    classic: yes
 
 pear_packages:
   - name: PHP_Beautifier-0.1.15

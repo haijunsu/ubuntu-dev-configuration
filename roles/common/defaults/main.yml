@@ -13,6 +13,18 @@ gem_packages:
   - name: bundler
     state: present
     executable: gem
+  - name: github-pages
+    state: present
+    executable: gem
+  - name: jekyll-compose
+    state: present
+    executable: gem
+  - name: execjs
+    state: present
+    executable: gem
+  - name: therubyracer
+    state: present
+    executable: gem
   # - name: bundler
   #   state: present # present/absent/latest, default: present
   #   version: "~> 1.15.1" # default: N/A
