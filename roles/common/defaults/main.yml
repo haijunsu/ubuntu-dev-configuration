@@ -1,5 +1,8 @@
 ---
-composer_packages: []
+ver_docker_compose: "1.25.5"
+
+composer_packages: 
+  - name: vimeo/psalm
   # - name: drush
   #   state: present # present/absent, default: present
   #   version: "^8.1" # default: N/A
@@ -10,12 +13,26 @@ gem_packages:
   - name: bundler
     state: present
     executable: gem
+  - name: github-pages
+    state: present
+    executable: gem
+  - name: jekyll-compose
+    state: present
+    executable: gem
+  - name: execjs
+    state: present
+    executable: gem
+  - name: therubyracer
+    state: present
+    executable: gem
   # - name: bundler
   #   state: present # present/absent/latest, default: present
   #   version: "~> 1.15.1" # default: N/A
 npm_packages:
   - name: alex
   - name: neovim
+  - name: js-beautify
+  - name: eslint-cli
   # - name: webpack
   #   state: present # present/absent/latest, default: present
   #   version: "^2.6" # default: N/A
@@ -23,49 +40,31 @@ pip_packages:
   - name: neovim
     state: latest
     executable: pip3
-  - name: neovim
-    state: latest
-    executable: pip2
   - name: proselint
     state: latest
     executable: pip3
-  - name: proselint
-    state: latest
-    executable: pip2
 # powerline shell
-  - name: nose
-    state: latest
-    executable: pip2
-  - name: mock
-    state: latest
-    executable: pip2
-  - name: sh
-    state: latest
-    executable: pip2
-  - name: powerline-shell
-    state: latest
-    executable: pip2
   - name: powerline-shell
     state: latest
     executable: pip3
   - name: jedi
     state: latest
     executable: pip3
-  - name: jedi
-    state: latest
-    executable: pip2
   - name: flake8
     state: latest
     executable: pip3
-  - name: flake8
-    state: latest
-    executable: pip2
-  - name: autopep8
+  - name: autoflake
     state: latest
     executable: pip3
   - name: autopep8
     state: latest
-    executable: pip2
+    executable: pip3
+  - name: isort
+    state: latest
+    executable: pip3
+  - name: yapf
+    state: latest
+    executable: pip3
   - name: pynvim
     state: latest
     executable: pip3

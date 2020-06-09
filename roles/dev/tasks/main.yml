@@ -24,6 +24,14 @@
     #  with_items: '{{ apt_packages_remove }}'
   become: true
 
+# Remove snap packages
+- name: Remove snap packages
+  snap:
+    name: '{{ item.name }}'
+    state: absent
+  with_items: '{{ snap_packages_remove }}'
+  become: true
+
 # Install apt packages
 - name: Install apt packages
   apt:
@@ -34,14 +42,23 @@
   become: true
 
 # Install snap packages (support in 2.8)
-#- name: Install snap packages
-#  snap:
-#    name: '{{ item.name }}'
-#    state: "{{ item.state | default('present') }}"
-#    classic: "{{ item.classic | default('no') }}"
-#    channel: "{{ item.channel | default('stable') }}"
-#  with_items: '{{ snap_packages }}'
-#  become: true
+- name: Install snap packages
+  snap:
+    name: '{{ item.name }}'
+    state: "{{ item.state | default('present') }}"
+    classic: "{{ item.classic | default('no') }}"
+    channel: "{{ item.channel | default('stable') }}"
+  with_items: '{{ snap_packages }}'
+  become: true
+  
+# Install pear packages (support in 2.4)
+- name: Install pear packages
+  pear:
+    name: '{{ item.name }}'
+    state: "{{ item.state | default('present') }}"
+  with_items: '{{ pear_packages }}'
+  become: true
+
 
 # Install deb packages from uris
 - name: check if deb packages already installed

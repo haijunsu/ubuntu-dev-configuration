@@ -50,18 +50,17 @@
     state: directory
   with_items:
       - ~/.bash
-      - ~/.config/nvim
-      - ~/.config/nvim/mysnippets
       - ~/.local/share/fonts
       - ~/.local/bin
       - ~/.SpaceVim.d
       - ~/.SpaceVim.d/autoload
+      - ~/.SpaceVim.d/UltiSnips
   become: yes
   become_user: "{{ ansible_user_id }}"
 
 - name: Install docker-compose
   get_url:
-    url: https://github.com/docker/compose/releases/download/1.16.1/docker-compose-Linux-x86_64
+    url: "https://github.com/docker/compose/releases/download/{{ ver_docker_compose }}/docker-compose-Linux-x86_64"
     dest: /usr/local/bin/docker-compose
     mode: 0555
   become: yes
@@ -86,11 +85,10 @@
       - { src: "bash_profile", dest: "~/.bash_profile" }
       - { src: "myalias", dest: "~/.bash/myalias" }
       - { src: "myenv", dest: "~/.bash/myenv" }
-        #- { src: "init.vim", dest: "~/.config/nvim/init.vim" }
-        #- { src: "markdown.snip", dest: "~/.config/nvim/mysnippets/markdown.snip" }
-      - { src: "powerline-shell.json", dest: "~/.powerline-shell.json" }
       - { src: "tmux.conf", dest: "~/.tmux.conf" }
+      - { src: "powerline-shell.json", dest: "~/.powerline-shell.json" }
       - { src: "SpaceVim_init.toml", dest: "~/.SpaceVim.d/init.toml" }
       - { src: "SpaceVim_config.vim", dest: "~/.SpaceVim.d/autoload/config.vim" }
+      - { src: "SpaceVim_all.snippets", dest: "~/.SpaceVim.d/UltiSnips/all.snippets" }
   become: yes
   become_user: "{{ ansible_user_id }}"
