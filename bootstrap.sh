@@ -12,6 +12,9 @@ sudo mv ${USER} /etc/sudoers.d/
 
 # enable firewall
 sudo ufw limit ssh
+sudo ufw allow https
+# chrome remote desktop ports
+sudo ufw allow from any to any port 3478
 echo y|sudo ufw enable
 
 # docker group

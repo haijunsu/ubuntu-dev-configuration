@@ -9,15 +9,6 @@ function _update_ps1() {
 
 PROMPT_COMMAND="_update_ps1; $PROMPT_COMMAND"
 
-
-if [ "x${PROFILE_LOADED}" == "x" ]; then
-    if [ -f ~/.bashrc ]; then
-        # This script only support gnu sed
-        . ~/.bashrc
-        export PROFILE_LOADED="Done"
-    fi
-fi
-
 # add user path
 PATH=~/bin:~/.local/bin:${PATH}
 export PATH

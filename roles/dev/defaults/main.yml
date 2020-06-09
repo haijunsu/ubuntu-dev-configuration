@@ -1,23 +1,28 @@
 ---
-apt_key_urls: []
+apt_key_urls: 
+  - https://download.docker.com/linux/ubuntu/gpg
 
 apt_key_ids: []
 
-apt_repositories: []
+apt_repositories: 
 #- ppa:neovim-ppa/stable
 #  - ppa:longsleep/golang-backports
 #  - deb [arch=amd64] https://download.docker.com/linux/ubuntu xenial stable
 #  - deb [arch=amd64] https://download.docker.com/linux/ubuntu bionic stable
+  - deb [arch=amd64] https://download.docker.com/linux/ubuntu focal stable
 
-apt_packages_remove: []
-#  - docker
-#  - docker-engine
-#  - docker.io
+apt_packages_remove:
+  - docker
+  - docker-engine
+  - docker.io
+  - containerd
+  - runc
 
 apt_packages:
   - software-properties-common
   - apt-transport-https
   - ca-certificates
+  - gnupg-agent
   - zlib1g-dev
   - curl
   - ctags
@@ -41,11 +46,17 @@ apt_packages:
   - nodejs
   - jekyll
   - rbenv
+  - docker-ce
+  - docker-ce-cli
+  - containerd.io
+  - mariadb-client-core-10.3
+
+snap_packages_remove:
+  - name: docker
 
 snap_packages:
   - name: ripgrep
     classic: yes
-  - name: docker
   - name: ruby
     classic: yes
 
