@@ -1,5 +1,18 @@
 #!/bin/bash
 eval "$(rbenv init -)"
+# Start an SSH Agent for the current shell:
+ssh-add -l &>/dev/null
+if [ "$?" == 2 ]; then
+  test -r ~/.ssh-agent && \
+    eval "$(<~/.ssh-agent)" >/dev/null
+
+  ssh-add -l &>/dev/null
+  if [ "$?" == 2 ]; then
+    (umask 066; ssh-agent > ~/.ssh-agent)
+    eval "$(<~/.ssh-agent)" >/dev/null
+    ssh-add
+  fi
+fi
 
 function _update_ps1() {
     PS1="$(powerline-shell $?)"
